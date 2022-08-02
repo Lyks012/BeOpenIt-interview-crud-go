@@ -1,0 +1,21 @@
+<div class="container mx-auto mt-4">
+  <div class="col-md-4">
+    <div *ngIf="this.post !== null; else noPost">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">{{ this.post?.Title }}</h5>
+          <p class="card-text">
+            {{ this.post?.Description }}
+          </p>
+          <button href="#" class="btn btn-danger" (click)="handleDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noPost>
+  <p>Pas de poste pour cette categorie</p>
+</ng-template>

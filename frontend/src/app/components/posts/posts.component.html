@@ -1,0 +1,21 @@
+<div class="container">
+  <app-create
+    [categories]="categories"
+    (createCategorie)="createOneCategory($event)"
+    (createProduit)="createOneProduit($event)"
+  ></app-create>
+  <app-filtres
+    [categories]="categories"
+    (categoryToFilter)="filterByCategory($event)"
+    (nameToFind)="findByPostName($event)"
+  ></app-filtres>
+</div>
+
+<h2>LISTE DES PRODUITS</h2>
+<div *ngFor="let category of this.displayedCategoriesWithPosts" class="row">
+  <h3>{{ category.Name }}</h3>
+  <hr />
+  <div *ngFor="let post of category.Posts" class="col-4">
+    <app-post [post]="post" (postToDelete)="deletePost(post)"></app-post>
+  </div>
+</div>

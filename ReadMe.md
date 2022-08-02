@@ -1,11 +1,17 @@
 # pratice-crud-go
 
+Create a database named crud-go
 
-Une petite application développée Go et Mysql 
+And populate with the crud-go file
 
-Description: 
+From the root of the project
 
-Gérer nos produits de différentes gamme. 
-Avoir la possibilité de lister, ajouter et même supprimer les posts . 
-Avoir depuis interface les détails d’un produit.
-Rechercher des produits depuis la liste et aussi filter par category.
+Run into terminal :
+
+- cd backend && go get . && go run.
+
+and then
+
+- cd ../frontend && npm install && ng serve
+
+Then Enjoy !!!

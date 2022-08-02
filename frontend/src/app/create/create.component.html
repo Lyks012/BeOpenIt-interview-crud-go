@@ -1,0 +1,92 @@
+<hr />
+<div class="row my-3">
+  <div class="col-6">
+    <form>
+      <h3>Creer une categorie</h3>
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            ngModel
+            name="nomCategorie"
+            placeholder="Nom de la categorie"
+            #nomCategorie="ngModel"
+            required
+          />
+          <div
+            *ngIf="nomCategorie.touched && !nomCategorie.valid"
+            class="alert alert-danger"
+          >
+            Le nom est requis
+          </div>
+        </div>
+
+        <div class="col">
+          <button
+            class="btn btn-primary"
+            (click)="handleCreateCategorie(nomCategorie)"
+          >
+            Creer la categorie
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-6">
+    <form>
+      <h3>Creer un produit</h3>
+      <div class="row">
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nom du post"
+            ngModel
+            name="nomPost"
+            required
+            #nomPost="ngModel"
+          />
+        </div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Description du post"
+            [(ngModel)]="descriptionPost"
+            name="descriptionPost"
+          />
+          <div
+            *ngIf="nomPost.touched && !nomPost.valid"
+            class="alert alert-danger"
+          >
+            Le nom est requis
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="postCategorieId"
+            name="postCategorieId"
+          >
+            <option selected>All categories</option>
+            <option *ngFor="let category of categories" [ngValue]="category.Id">
+              {{ category.Name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row text-center mt-3">
+        <div class="col-12">
+          <button class="btn btn-primary" (click)="handleCreatePost(nomPost)">
+            Creer produit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>

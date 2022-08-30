@@ -8,10 +8,10 @@ From the root of the project
 
 Run into terminal :
 
-- cd backend && go get . && go run.
+- cd server && go get . && go run .
 
 and then
 
-- cd ../frontend && npm install && ng serve
+- cd frontend && npm install && ng serve
 
 Then Enjoy !!!

@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  frontend:
+    depends_on:
+      - server
+    build: ./frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - /home/ali/Documents/BeOpenIt-interview-crud-go/frontend:/app
+
+  server:
+    depends_on:
+      - db
+    build: ./server
+    ports:
+      - "8081:8081"
+    volumes:
+      - /home/ali/Documents/BeOpenIt-interview-crud-go/server:/app
+
+  db:
+    build: ./database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: crud-go
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - 3307:3306

@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"crud/config"
-	"crud/models"
+	model "crud/models"
 
 	"github.com/gorilla/mux"
 )
@@ -127,9 +127,9 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 
 	invalidBodyError := json.NewDecoder(r.Body).Decode(&post)
 	if invalidBodyError != nil {
-        http.Error(w, invalidBodyError.Error(), http.StatusBadRequest)
-        return
-    }	
+		http.Error(w, invalidBodyError.Error(), http.StatusBadRequest)
+		return
+	}
 
 	db := config.DBConnect()
 
@@ -141,7 +141,7 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(categoryId)
 
-	_, err := db.Exec("INSERT INTO post VALUES(?, ?, ?, ?)", "", title, description, categoryId)
+	_, err := db.Exec("INSERT INTO post VALUES(?, ?, ?, ?)", 0, title, description, categoryId)
 
 	if err != nil {
 		log.Print(err)
@@ -176,7 +176,6 @@ func DeletePost(w http.ResponseWriter, r *http.Request) {
 	response.Status = 200
 	response.Message = "Post deleted with succes"
 
-	
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	// w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)

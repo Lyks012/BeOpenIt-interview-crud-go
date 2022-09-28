@@ -1,9 +1,10 @@
 package main
 
 import (
-	"log"
 	"fmt"
+	"log"
 	"net/http"
+
 	// "database/sql"
 
 	"github.com/gorilla/mux"
@@ -11,18 +12,18 @@ import (
 	"crud/controller"
 
 	_ "github.com/go-sql-driver/mysql"
-) 
+)
 
 type WithCORS struct {
-  r *mux.Router
-
+	r *mux.Router
 }
 
-func main(){
+func main() {
+
 	router := mux.NewRouter()
 
 	router.Use(CORS)
-	
+
 	router.HandleFunc("/posts", controller.GetAllPosts).Methods("GET", "OPTIONS")
 	router.HandleFunc("/post/{id}", controller.GetPostById).Methods("GET", "OPTIONS")
 	router.HandleFunc("/createPost", controller.CreatePost).Methods("POST", "OPTIONS")
@@ -35,6 +36,7 @@ func main(){
 
 	fmt.Println("connected to port 8081")
 	log.Fatal(http.ListenAndServe(":8081", router))
+
 }
 func CORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -49,7 +51,7 @@ func CORS(next http.Handler) http.Handler {
 			return
 		}
 
-		fmt.Println("ok")
+		fmt.Println("okay")
 
 		// Next
 		next.ServeHTTP(w, r)
